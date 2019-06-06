@@ -38,7 +38,7 @@ export const firebaseConfig : FirebaseAppConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    SharedModule
+    SharedModule.forRoot()
   ]
 })
 export class AuthModule {}
