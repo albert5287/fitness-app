@@ -15,7 +15,6 @@ import { AppComponent } from './containers/app/app.component';
 // components
 import { AppHeaderComponent } from './components/app-header/app-header.component';
 import { AppNavComponent } from './components/app-nav/app-nav.component';
-import { MealsComponent } from '../health/meals/containers/meals/meals.component'; //should not be here if i'm lazy loading
 
 
 // routes
@@ -32,7 +31,6 @@ export const ROUTES: Routes = [];
     AppComponent, 
     AppHeaderComponent,
     AppNavComponent,
-    MealsComponent
   ],
    providers: [
     Store
