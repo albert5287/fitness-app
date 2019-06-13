@@ -7,8 +7,32 @@ import { Store } from 'store';
     selector: 'meals',
     styleUrls: ['meals.component.scss'],
     template: `
-        <div>
-            {{meals$ | async | json}}
+        <div class="meals">
+            <div class="meals__title">
+                <h1>
+                <img src="assets/images/food.svg" />
+                Your meals
+                </h1>
+                <a class="btn__add"
+                [routerLink]="['../meals/new']">
+                    <img src="assets/images/add-white.svg" />
+                    New meal
+                </a>
+            </div>
+            <div *ngIf="meals$ | async as meals; else loading">
+                <div class="message" *ngIf="!meals.length">
+                    <img src="assets/images/face.svg" />
+                    No meals, add new meal to start
+                </div>
+            </div>
+
+            
+            <ng-template #loading>
+                <div class="message">
+                    <img src="assets/images/loading.svg" />
+                    Fetching meals...
+                </div>
+            </ng-template>
         </div>
     `
 })

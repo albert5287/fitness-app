@@ -6,10 +6,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 //containers
 import { MealsComponent } from './containers/meals/meals.component';
+import { MealComponent } from './containers/meal/meal.component';
 import { SharedModule } from '../shared/shared.module';
 
 export const ROUTES: Routes = [
-    {path: '', component: MealsComponent}
+    {path: '', component: MealsComponent},
+    {path: 'new', component: MealComponent}
 ]
 
 @NgModule({
@@ -20,7 +22,8 @@ export const ROUTES: Routes = [
         SharedModule
     ],
     declarations: [
-        MealsComponent
+        MealsComponent,
+        MealComponent
     ]
 })
 export class MealsModule {}
