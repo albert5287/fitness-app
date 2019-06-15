@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'list-item',
@@ -48,6 +48,9 @@ export class ListItemComponent {
     @Input()
     item: any;
 
+    @Output()
+    remove = new EventEmitter<any>();
+
     constructor() {}
 
     getRoute(item: any){
@@ -59,6 +62,6 @@ export class ListItemComponent {
     }
 
     removeItem(){
-        
+        this.remove.emit(this.item);
     }
 }
