@@ -3,7 +3,7 @@ import { Store } from 'store';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from 'src/auth/shared/services/auth/auth.service';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 export interface Meal{
     name: string,
@@ -16,11 +16,12 @@ export interface Meal{
 @Injectable()
 export class MealsService {
 
-    meals$: Observable<Meal[]> = (this.db.list(`meals/${this.uid}`)
-    .valueChanges() as Observable<Meal[]>) //the as is used because valueChanges() loses type information https://github.com/angular/angularfire2/issues/1299
+    meals$: Observable<Meal[]> = this.db.list(`meals/${this.uid}`)
+    .snapshotChanges()
     .pipe(
+        map(changes => changes.map(c => ({ $key: c.payload.key, ...c.payload.val() }))),
         tap(next => this.store.set('meals', next))
-    );
+    ) as Observable<Meal[]>;
 
     constructor(
         private store: Store,
